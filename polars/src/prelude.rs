@@ -1,5 +1,5 @@
-pub use polars_core::prelude::*;
-pub use polars_io::prelude::*;
+pub use crate::core::prelude::*;
+pub use crate::io::prelude::*;
 
 #[cfg(feature = "lazy")]
-pub use polars_lazy::prelude::*;
+pub use crate::lazy::prelude::*;
