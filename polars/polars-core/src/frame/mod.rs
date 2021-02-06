@@ -24,6 +24,63 @@ pub mod row;
 pub mod select;
 mod upstream_traits;
 
+#[derive(Clone)]
+pub struct DataFrame {
+    pub(crate) columns: Vec<Series>,
+}
+
+impl DataFrame {
+    /// Create a DataFrame from a Vector of Series.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use polars_core::prelude::*;
+    /// let s0 = Series::new("days", [0, 1, 2].as_ref());
+    /// let s1 = Series::new("temp", [22.1, 19.9, 7.].as_ref());
+    /// let df = DataFrame::new(vec![s0, s1]).unwrap();
+    /// ```
+    pub fn new<S: IntoSeries>(columns: Vec<S>) -> Result<Self> {
+        let mut first_len = None;
+        let mut series_cols = Vec::with_capacity(columns.len());
+        let mut names = HashSet::with_capacity_and_hasher(columns.len(), RandomState::default());
+
+        // check for series length equality and convert into series in one pass
+        for s in columns {
+            let series = s.into_series();
+            match first_len {
+                Some(len) => {
+                    if series.len() != len {
+                        return Err(PolarsError::ShapeMisMatch("Could not create a new DataFrame from Series. The Series have different lengths".into()));
+                    }
+                }
+                None => first_len = Some(series.len()),
+            }
+            let name = series.name().to_string();
+
+            if names.contains(&name) {
+                return Err(PolarsError::Duplicate(
+                    format!("Column with name: '{}' has more than one occurences", name).into(),
+                ));
+            }
+
+            names.insert(name);
+            series_cols.push(series)
+        }
+        let mut df = DataFrame {
+            columns: series_cols,
+        };
+        df.rechunk()?;
+        Ok(df)
+    }
+
+    // doesn't check Series sizes.
+    // todo! make private
+    pub fn new_no_checks(columns: Vec<Series>) -> DataFrame {
+        DataFrame { columns }
+    }
+}
+
 pub trait IntoSeries {
     fn into_series(self) -> Series
     where
@@ -82,11 +139,6 @@ impl_into_series!(Date64Chunked);
 impl_into_series!(Time64NanosecondChunked);
 impl_into_series!(CategoricalChunked);
 
-#[derive(Clone)]
-pub struct DataFrame {
-    pub(crate) columns: Vec<Series>,
-}
-
 impl DataFrame {
     /// Get the index of the column.
     fn name_to_idx(&self, name: &str) -> Result<usize> {
@@ -120,56 +172,6 @@ impl DataFrame {
             set.insert(s.name().to_string());
         }
         set
-    }
-
-    /// Create a DataFrame from a Vector of Series.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// use polars_core::prelude::*;
-    /// let s0 = Series::new("days", [0, 1, 2].as_ref());
-    /// let s1 = Series::new("temp", [22.1, 19.9, 7.].as_ref());
-    /// let df = DataFrame::new(vec![s0, s1]).unwrap();
-    /// ```
-    pub fn new<S: IntoSeries>(columns: Vec<S>) -> Result<Self> {
-        let mut first_len = None;
-        let mut series_cols = Vec::with_capacity(columns.len());
-        let mut names = HashSet::with_capacity_and_hasher(columns.len(), RandomState::default());
-
-        // check for series length equality and convert into series in one pass
-        for s in columns {
-            let series = s.into_series();
-            match first_len {
-                Some(len) => {
-                    if series.len() != len {
-                        return Err(PolarsError::ShapeMisMatch("Could not create a new DataFrame from Series. The Series have different lengths".into()));
-                    }
-                }
-                None => first_len = Some(series.len()),
-            }
-            let name = series.name().to_string();
-
-            if names.contains(&name) {
-                return Err(PolarsError::Duplicate(
-                    format!("Column with name: '{}' has more than one occurences", name).into(),
-                ));
-            }
-
-            names.insert(name);
-            series_cols.push(series)
-        }
-        let mut df = DataFrame {
-            columns: series_cols,
-        };
-        df.rechunk()?;
-        Ok(df)
-    }
-
-    // doesn't check Series sizes.
-    // todo! make private
-    pub fn new_no_checks(columns: Vec<Series>) -> DataFrame {
-        DataFrame { columns }
     }
 
     /// Aggregate all chunks to contiguous memory.
