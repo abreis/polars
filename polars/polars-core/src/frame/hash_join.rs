@@ -938,6 +938,7 @@ impl DataFrame {
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn join_dfs(left: &DataFrame, right: &DataFrame) -> Result<DataFrame> {
     ///     left.inner_join(right, "join_column_left", "join_column_right")
@@ -981,6 +982,7 @@ impl DataFrame {
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn join_dfs(left: &DataFrame, right: &DataFrame) -> Result<DataFrame> {
     ///     left.left_join(right, "join_column_left", "join_column_right")
@@ -1019,6 +1021,7 @@ impl DataFrame {
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn join_dfs(left: &DataFrame, right: &DataFrame) -> Result<DataFrame> {
     ///     left.outer_join(right, "join_column_left", "join_column_right")

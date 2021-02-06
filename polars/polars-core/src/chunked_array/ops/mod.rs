@@ -444,6 +444,7 @@ pub trait ChunkVar<T> {
 /// # Example
 ///
 /// ```
+/// # use polars_core::error::Result;
 /// use polars_core::prelude::*;
 /// fn filter_all_ones(df: &DataFrame) -> Result<DataFrame> {
 ///     let mask = df

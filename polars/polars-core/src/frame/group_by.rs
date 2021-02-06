@@ -615,6 +615,7 @@ impl DataFrame {
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn groupby_sum(df: &DataFrame) -> Result<DataFrame> {
     ///     df.groupby("column_name")?
@@ -1193,6 +1194,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select(&["temp", "rain"]).mean()
     /// }
@@ -1232,6 +1234,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").sum()
     /// }
@@ -1271,6 +1274,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").min()
     /// }
@@ -1309,6 +1313,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").max()
     /// }
@@ -1347,6 +1352,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").first()
     /// }
@@ -1383,6 +1389,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").last()
     /// }
@@ -1419,6 +1426,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").n_unique()
     /// }
@@ -1457,6 +1465,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").quantile(0.2)
     /// }
@@ -1485,6 +1494,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").median()
     /// }
@@ -1536,6 +1546,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.select("temp").count()
     /// }
@@ -1576,6 +1587,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     df.groupby("date")?.groups()
     /// }
@@ -1628,27 +1640,28 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// # Example
     ///
-    ///  ```rust
-    ///  # use polars_core::prelude::*;
-    ///  fn example(df: DataFrame) -> Result<DataFrame> {
-    ///      df.groupby("date")?.agg(&[("temp", &["n_unique", "sum", "min"])])
-    ///  }
-    ///  ```
-    ///  Returns:
+    /// ```rust
+    /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
+    /// fn example(df: DataFrame) -> Result<DataFrame> {
+    ///     df.groupby("date")?.agg(&[("temp", &["n_unique", "sum", "min"])])
+    /// }
+    /// ```
+    /// Returns:
     ///
-    ///  ```text
-    ///  +--------------+---------------+----------+----------+
-    ///  | date         | temp_n_unique | temp_sum | temp_min |
-    ///  | ---          | ---           | ---      | ---      |
-    ///  | date32(days) | u32           | i32      | i32      |
-    ///  +==============+===============+==========+==========+
-    ///  | 2020-08-23   | 1             | 9        | 9        |
-    ///  +--------------+---------------+----------+----------+
-    ///  | 2020-08-22   | 2             | 8        | 1        |
-    ///  +--------------+---------------+----------+----------+
-    ///  | 2020-08-21   | 2             | 30       | 10       |
-    ///  +--------------+---------------+----------+----------+
-    ///  ```
+    /// ```text
+    /// +--------------+---------------+----------+----------+
+    /// | date         | temp_n_unique | temp_sum | temp_min |
+    /// | ---          | ---           | ---      | ---      |
+    /// | date32(days) | u32           | i32      | i32      |
+    /// +==============+===============+==========+==========+
+    /// | 2020-08-23   | 1             | 9        | 9        |
+    /// +--------------+---------------+----------+----------+
+    /// | 2020-08-22   | 2             | 8        | 1        |
+    /// +--------------+---------------+----------+----------+
+    /// | 2020-08-21   | 2             | 30       | 10       |
+    /// +--------------+---------------+----------+----------+
+    /// ```
     ///
     pub fn agg<Column, S, Slice>(&self, column_to_agg: &[(Column, Slice)]) -> Result<DataFrame>
     where
@@ -1725,6 +1738,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     ///
     /// ```rust
     /// # use polars_core::prelude::*;
+    /// # use polars_core::error::Result;
     /// fn example(df: DataFrame) -> Result<DataFrame> {
     ///     // GroupBy and aggregate to Lists
     ///     df.groupby("date")?.select("temp").agg_list()
@@ -1809,6 +1823,7 @@ impl<'df, 'selection_str> GroupBy<'df, 'selection_str> {
     /// # Example
     ///
     /// ```rust
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// let s0 = Series::new("foo", ["A", "A", "B", "B", "C"].as_ref());
     /// let s1 = Series::new("N", [1, 2, 2, 4, 2].as_ref());

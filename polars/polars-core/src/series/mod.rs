@@ -582,6 +582,7 @@ pub trait SeriesTrait: Send + Sync + private::PrivateSeries {
     /// # Example
     ///
     /// ```rust
+    /// # use polars_core::error::Result;
     /// # use polars_core::prelude::*;
     /// fn example() -> Result<()> {
     ///     let s = Series::new("series", &[1, 2, 3]);
@@ -616,6 +617,7 @@ pub trait SeriesTrait: Send + Sync + private::PrivateSeries {
     /// # Example
     ///
     /// ```rust
+    /// # use polars_core::error::Result;
     /// # use polars_core::prelude::*;
     /// fn example() -> Result<()> {
     ///     let s = Series::new("some_missing", &[Some(1), None, Some(2)]);

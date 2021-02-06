@@ -405,6 +405,7 @@ impl DataFrame {
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn drop_column(df: &mut DataFrame, name: &str) -> Result<Series> {
     ///     df.drop_in_place(name)
@@ -565,6 +566,7 @@ impl DataFrame {
     /// # Examples
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     ///
     /// fn example(df: &DataFrame, possible: &str) -> Result<DataFrame> {
@@ -888,6 +890,7 @@ impl DataFrame {
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn example(df: &mut DataFrame) -> Result<&mut DataFrame> {
     ///     let original_name = "foo";
@@ -1465,6 +1468,7 @@ impl DataFrame {
     /// ```rust
     ///
     /// # #[macro_use] extern crate polars_core;
+    /// # use polars_core::error::Result;
     /// # fn main() {
     ///  use polars_core::prelude::*;
     ///

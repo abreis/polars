@@ -110,6 +110,7 @@ fn create_chunk_id(chunks: &[ArrayRef]) -> Vec<usize> {
 ///
 /// ```rust
 /// # use polars_core::prelude::*;
+/// # use polars_core::error::Result;
 /// fn to_chunked_array(series: &Series) -> Result<&Int32Chunked>{
 ///     series.i32()
 /// }
@@ -694,6 +695,7 @@ where
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn multiply(ca: &UInt32Chunked) -> Result<Series> {
     ///     let mapped = ca.map(|v| v * 2)?;
@@ -742,6 +744,7 @@ where
     /// # Example
     ///
     /// ```
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// fn compute_sum(ca: &UInt32Chunked) -> Result<u32> {
     ///     ca.fold(0, |acc, value| acc + value)

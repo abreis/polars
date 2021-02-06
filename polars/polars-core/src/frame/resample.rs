@@ -43,6 +43,7 @@ impl DataFrame {
     /// ╰─────────────────────┴─────╯
     /// ```
     /// ```rust
+    /// # use polars_core::error::Result;
     /// use polars_core::prelude::*;
     /// use polars_core::frame::resample::SampleRule;
     ///
