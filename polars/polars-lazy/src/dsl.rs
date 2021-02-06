@@ -3,6 +3,7 @@ use crate::logical_plan::Context;
 use crate::prelude::*;
 use crate::utils::{output_name, rename_field};
 use polars_core::{
+    error::Result,
     frame::group_by::{fmt_groupby_column, GroupByMethod},
     prelude::*,
     utils::get_supertype,

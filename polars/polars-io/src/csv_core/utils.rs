@@ -2,6 +2,7 @@ use crate::csv::CsvEncoding;
 use crate::csv_core::parser::next_line_position;
 use ahash::RandomState;
 use lazy_static::lazy_static;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use regex::{Regex, RegexBuilder};
 use std::borrow::Cow;

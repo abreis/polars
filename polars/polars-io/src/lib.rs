@@ -16,6 +16,7 @@ use arrow::{
     csv::Reader as ArrowCsvReader, error::Result as ArrowResult, json::Reader as ArrowJsonReader,
     record_batch::RecordBatch,
 };
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use polars_core::utils::accumulate_dataframes_vertical;
 use std::convert::TryFrom;

@@ -1,5 +1,6 @@
 use crate::csv::CsvEncoding;
 use crate::csv_core::parser::skip_whitespace;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use std::fmt::Debug;
 

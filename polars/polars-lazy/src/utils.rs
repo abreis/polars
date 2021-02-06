@@ -1,6 +1,7 @@
 use crate::logical_plan::Context;
 use crate::prelude::*;
 use ahash::RandomState;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use std::collections::HashSet;
 use std::sync::Arc;

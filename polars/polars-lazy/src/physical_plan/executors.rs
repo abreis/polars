@@ -2,6 +2,7 @@ use super::*;
 use crate::logical_plan::{Context, FETCH_ROWS};
 use crate::utils::rename_expr_root_name;
 use itertools::Itertools;
+use polars_core::error::Result;
 use polars_core::utils::{accumulate_dataframes_vertical, num_cpus, split_df};
 use polars_core::{frame::hash_join::JoinType, POOL};
 use polars_io::prelude::*;

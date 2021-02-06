@@ -4,6 +4,7 @@ pub mod planner;
 
 use crate::prelude::*;
 use ahash::RandomState;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use polars_io::PhysicalIOExpr;
 use std::collections::HashMap;

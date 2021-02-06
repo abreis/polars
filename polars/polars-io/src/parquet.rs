@@ -27,6 +27,7 @@ use parquet_lib::{
     },
     file::writer::TryClone,
 };
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use std::io::{Read, Seek, Write};
 use std::sync::Arc;

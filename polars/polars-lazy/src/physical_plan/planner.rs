@@ -4,6 +4,7 @@ use crate::prelude::*;
 use crate::utils::{agg_source_paths, expr_to_root_column_name};
 use ahash::RandomState;
 use itertools::Itertools;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use polars_core::{frame::group_by::GroupByMethod, utils::parallel_op};
 use polars_io::ScanAggregation;

@@ -5,6 +5,7 @@ use crate::utils::{
     expr_to_root_column_exprs, expr_to_root_column_name, expr_to_root_column_names, has_expr,
 };
 use ahash::RandomState;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 use std::collections::HashSet;
 use std::sync::Arc;

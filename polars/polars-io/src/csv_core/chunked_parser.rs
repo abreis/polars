@@ -3,6 +3,7 @@ use crate::csv_core::buffer::PrimitiveParser;
 use crate::csv_core::utils::parse_bytes_with_encoding;
 use crate::PhysicalIOExpr;
 use crate::ScanAggregation;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 
 pub(crate) fn init_builders(

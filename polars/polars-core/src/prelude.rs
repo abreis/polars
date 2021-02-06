@@ -1,4 +1,5 @@
 //! Everything you need to get started with Polars.
+pub(crate) use crate::error::Result;
 pub use crate::{
     chunked_array::{
         arithmetic::Pow,
@@ -19,7 +20,7 @@ pub use crate::{
     },
     datatypes,
     datatypes::*,
-    error::{PolarsError, Result},
+    error::PolarsError,
     frame::{group_by::VecHash, hash_join::JoinType, DataFrame, IntoSeries},
     series::{
         arithmetic::{LhsNumOps, NumOpsDispatch},

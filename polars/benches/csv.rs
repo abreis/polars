@@ -1,4 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
+use polars::core::error::Result;
 use polars::prelude::*;
 use std::fs::File;
 

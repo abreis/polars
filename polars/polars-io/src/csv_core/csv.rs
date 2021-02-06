@@ -7,6 +7,7 @@ use crate::csv_core::{buffer::*, parser::*};
 use crate::PhysicalIOExpr;
 use crate::ScanAggregation;
 use csv::ByteRecordsIntoIter;
+use polars_core::error::Result;
 use polars_core::{prelude::*, POOL};
 use rayon::prelude::*;
 use std::fmt;

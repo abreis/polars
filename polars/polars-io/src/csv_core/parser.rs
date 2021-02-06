@@ -1,5 +1,6 @@
 use super::buffer::*;
 use num::traits::Pow;
+use polars_core::error::Result;
 use polars_core::prelude::*;
 
 /// Skip the utf-8 Byte Order Mark.

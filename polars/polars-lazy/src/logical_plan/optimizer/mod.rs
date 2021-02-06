@@ -2,6 +2,7 @@ use crate::logical_plan::{prepare_projection, Context};
 use crate::prelude::*;
 use crate::utils::{expr_to_root_column_exprs, rename_field};
 use ahash::RandomState;
+use polars_core::error::Result;
 use polars_core::frame::group_by::{fmt_groupby_column, GroupByMethod};
 use polars_core::frame::hash_join::JoinType;
 use polars_core::prelude::*;

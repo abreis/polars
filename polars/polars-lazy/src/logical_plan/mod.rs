@@ -8,6 +8,7 @@ use crate::utils::{
 use crate::{prelude::*, utils};
 use ahash::RandomState;
 use itertools::Itertools;
+use polars_core::error::Result;
 use polars_core::frame::hash_join::JoinType;
 use polars_core::prelude::*;
 use polars_io::csv_core::utils::infer_file_schema;

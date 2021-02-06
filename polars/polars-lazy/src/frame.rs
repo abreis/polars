@@ -8,6 +8,7 @@ use crate::logical_plan::optimizer::simplify_expr::SimplifyExprRule;
 use crate::prelude::simplify_expr::SimplifyBooleanRule;
 use crate::{logical_plan::FETCH_ROWS, prelude::*};
 use ahash::RandomState;
+use polars_core::error::Result;
 use polars_core::frame::hash_join::JoinType;
 use polars_core::prelude::*;
 use polars_core::toggle_string_cache;

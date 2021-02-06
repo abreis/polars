@@ -5,6 +5,7 @@ use crate::utils::str_to_polarstype;
 use crate::{dispatch::ApplyLambda, npy::aligned_array, prelude::*};
 use numpy::PyArray1;
 use polars::chunked_array::builder::get_bitmap;
+use polars::core::error::Result;
 use pyo3::types::{PyList, PyTuple};
 use pyo3::{exceptions::PyRuntimeError, prelude::*, Python};
 use std::any::Any;
