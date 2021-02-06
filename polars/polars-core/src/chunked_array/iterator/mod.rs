@@ -1068,6 +1068,7 @@ macro_rules! impl_many_chunk_null_check_iterator {
         /// The chunks have null values so it DOES perform null checks.
         ///
         /// The return type is `Option<$iter_item>`.
+        #[allow(dead_code)]
         pub struct $iterator_name<'a> {
             ca: &'a $ca_type,
             chunks: Vec<&'a $arrow_array>,

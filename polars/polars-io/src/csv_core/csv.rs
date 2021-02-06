@@ -150,6 +150,7 @@ impl<R: Read + Sync + Send> SequentialReader<R> {
 
         let parsed_dfs = POOL
             .install(|| {
+                #[allow(unused_variables)]
                 file_chunks
                     .into_par_iter()
                     .enumerate()
